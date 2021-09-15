@@ -1,4 +1,4 @@
 NAME = philo
 
-SRC = $Smain.c \
+SRC = $Smain.c $Sinit_args.c \
 

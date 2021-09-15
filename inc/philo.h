@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/15 17:54:51 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/15 18:43:43 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+# define MAX_INT 2147483647
 # define MIN_NB_ARG 5
 
 typedef enum e_bool
@@ -34,7 +35,7 @@ typedef struct s_global
 	long int		tto_die;
 	long int		tto_eat;
 	long int		tto_sleep;
-	long int		must_eat;
+	long int		must_eat_x;
 	t_bool			all_good;
 }	t_global;
 
@@ -45,5 +46,7 @@ typedef struct s_philo
 	pthread_mutex_t	left_hand;
 	pthread_mutex_t	right_hand;
 }	t_philo;
+
+t_bool	init_args(int ac, char **av, int *args);
 
 #endif
