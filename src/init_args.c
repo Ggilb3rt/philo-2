@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 18:25:25 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/15 18:36:21 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:23:11 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ t_bool	init_args(int ac, char **av, int *args)
 			return (false);
 		i++;
 	}
+	if (args[0] == 0)
+		return (false);
 	return (true);
 }

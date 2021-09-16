@@ -30,7 +30,7 @@ $O%.o: $S%.c $(HEADERS) | $O
 $(NAME): $(OBJ)
 	@$(CC) $^ -o $@
 	@printf "Have fun :-)\n"
-	make test
+	#make test
 
 # CLEANERS
 clean:
