@@ -17,12 +17,15 @@ printf "\033[0;35mTest re er as i\n\033[0m"
 printf "\033[0;35m\nTest basic 0 42 10 3 \n\033[0m"
 ./philo 0 42 10 3
 
+printf "\033[0;35m\nTest basic 2 -42 10 3 \n\033[0m"
+./philo 2 -42 10 3
+
 printf "\033[0;33m\nTest basic 5 42 10 3 \n\033[0m"
 ./philo 5 42 10 3
 
 
-printf "\033[0;33m\nTest basic 4 42 10 3 9\n\033[0m"
-./philo 4 42 10 3 9
+printf "\033[0;33m\nTest basic 4 42 10 3 3\n\033[0m"
+./philo 4 42 10 3 3
 
 
 #printf "\033[0;33m\nTest overflow 4000000000000000 4 5 6 4444\n\033[0m"
