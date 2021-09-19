@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/17 12:06:38 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/19 10:30:53 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_msg(char *msg, t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex_talk);
-	printf("%06ld %d %s\n", get_millis() - philo->time_start, philo->id + 1, msg);
+	printf("%6ld %d %s\n", get_millis() - philo->time_start, philo->id + 1, msg);
 	pthread_mutex_unlock(philo->mutex_talk);
 }
 
