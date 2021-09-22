@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 13:22:25 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:20:29 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks)
 		philo[i].all_alive = 0;
 		philo[i].fork_first = ft_min(i, (i + 1) % rules.nb_philo);
 		philo[i].fork_second = ft_max(i, (i + 1) % rules.nb_philo);
+		//philo[i].fork_first = i;
+		//philo[i].fork_second = i + 1;
+		//if (i - 1 < 0)
+		//	philo[i].fork_second = rules.nb_philo - 1;
 		philo[i].mutex_forks = forks;
 		printf("philo %d demands fork %d first then fork %d\n",
 			philo[i].id + 1, philo[i].fork_first + 1, philo[i].fork_second + 1);
@@ -134,6 +138,6 @@ int	main(int ac, char **av)
 	if (!philo)
 		return (ft_free_forks(forks, &rules));
 	start(philo, &rules);
-	//destroy_forks(philo);
+	destroy_forks(philo);
 	return (EXIT_SUCCESS);
 }
