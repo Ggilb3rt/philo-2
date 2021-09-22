@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 17:43:29 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:03:04 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void			*life(void *arg);
 void			*monitor(void *arg);
 
 int				ft_free_forks(pthread_mutex_t *forks, t_global *rules);
+void			ft_free_philos(t_philo *philo);
 
 #endif

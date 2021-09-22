@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 17:54:34 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:02:41 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	main(int ac, char **av)
 		return (ft_free_forks(forks, &rules));
 	start(philo);
 	ft_free_forks(forks, &rules);
+	ft_free_philos(philo);
 	return (EXIT_SUCCESS);
 }

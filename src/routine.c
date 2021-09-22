@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:29:19 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 17:40:04 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 19:05:11 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&philo[i].mutex_last_meal);
 			pthread_mutex_unlock(philo->mutex_all_alive);
 		}
-		usleep(100);
+		ft_usleep(100, philo);
 	}
 	return (NULL);
 }
