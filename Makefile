@@ -11,6 +11,11 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
 INCFLAGS = -I$I
 
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
+	TFLAGS = -pthread -lpthread
+endif
+
 RM = rm -f
 
 .PHONY: all clean fclean re fcleanlibft fcleanall reall test
@@ -29,6 +34,11 @@ $O%.o: $S%.c $(HEADERS) | $O
 
 $(NAME): $(OBJ)
 	@$(CC) $^ -o $@
+	@printf "Have fun :-)\n"
+	#make test
+
+linux: $(OBJ)
+	@$(CC) $^ -pthread -lpthread -o $(NAME)
 	@printf "Have fun :-)\n"
 	#make test
 
