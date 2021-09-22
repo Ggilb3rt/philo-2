@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:06:14 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 13:35:50 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 16:33:16 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ time_t	get_millis(void)
 	return (millis);
 }
 
-// Seg fault when all_alive used
 void	ft_usleep(int time, t_philo *philo)
 {
 	time_t	stop;

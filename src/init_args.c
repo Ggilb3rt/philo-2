@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 18:25:25 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/17 07:13:10 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 17:44:06 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,13 @@ t_bool	init_args(int ac, char **av, int *args)
 	if (args[0] == 0)
 		return (false);
 	return (true);
+}
+
+void	init_rules(int *args, t_global *rules)
+{
+	rules->nb_philo = args[0];
+	rules->tto_die = args[1];
+	rules->tto_eat = args[2];
+	rules->tto_sleep = args[3];
+	rules->must_eat_x = args[4];
 }
