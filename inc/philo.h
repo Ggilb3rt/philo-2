@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/17 12:05:20 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 13:32:58 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_philo
 int		ft_min(int x, int y);
 int		ft_max(int x, int y);
 time_t	get_millis(void);
+void	ft_usleep(int time, t_philo *philo);
 void	print_msg(char *msg, t_philo *philo);
 
 t_bool	init_args(int ac, char **av, int *args);

@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/19 10:30:53 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 13:22:25 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,18 @@ pthread_mutex_t	*init_forks(t_global *rules)
 	return (forks);
 }
 
+void	destroy_forks(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->nb_philo)
+	{
+		pthread_mutex_destroy(&philo[0].mutex_forks[i]);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	int				args[MIN_NB_ARG];
@@ -122,5 +134,6 @@ int	main(int ac, char **av)
 	if (!philo)
 		return (ft_free_forks(forks, &rules));
 	start(philo, &rules);
+	//destroy_forks(philo);
 	return (EXIT_SUCCESS);
 }

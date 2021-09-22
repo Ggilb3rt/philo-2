@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:29:19 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/19 10:38:10 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/22 13:35:11 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	*monitor(void *arg)
 		while (++i < philo->nb_philo)
 		{
 			pthread_mutex_lock(philo->mutex_all_alive);
-			if (*philo->all_alive == philo->nb_philo * philo->nb_meal)
-				return (NULL);
+			//if (*philo->all_alive == philo->nb_philo * philo->nb_meal)
+			//	return (NULL);
 			pthread_mutex_lock(&philo[i].mutex_last_meal);
 			if (get_millis() - philo[i].last_meal > philo->tto_die)
 			{
