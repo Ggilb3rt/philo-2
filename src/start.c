@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:36:27 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 19:03:39 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/23 08:48:39 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	start(t_philo *philo)
 	pthread_t	monitor_thread;
 	int			starter;
 	int			all_alive;
+	int			i;
 
 	starter = 0;
 	all_alive = 0;
@@ -46,5 +47,8 @@ void	start(t_philo *philo)
 	start_half_philo(philo, ++starter, now, &all_alive);
 	pthread_create(&monitor_thread, NULL, monitor, philo);
 	pthread_join(monitor_thread, NULL);
+	i = -1;
+	while (++i < philo->nb_philo)
+		pthread_detach(philo[i].thread);
 	printf("END / %ld\n", get_millis());
 }
