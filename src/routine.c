@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:29:19 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 19:05:11 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:35:46 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ t_bool	check_alive(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex_all_alive);
 	if (*philo->all_alive == -1)
+	{
+		//pthread_mutex_unlock(philo->mutex_all_alive);
 		return (false);
+	}
 	pthread_mutex_unlock(philo->mutex_all_alive);
 	return (true);
 }
@@ -41,7 +44,6 @@ t_bool	eat(t_philo *philo)
 	return (true);
 }
 
-//printf("philo %d meal %d\n", philo->id + 1, nb_meal);
 void	*life(void *arg)
 {
 	t_philo	*philo;
