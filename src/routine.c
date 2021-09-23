@@ -28,6 +28,8 @@ t_bool	eat(t_philo *philo)
 	pthread_mutex_lock(&philo->mutex_forks[philo->fork_second]);
 	print_msg(MSG_TAKE_FORK, philo);
 	print_msg(MSG_EATING, philo);
+	if (!check_alive(philo))
+		return (false);
 	pthread_mutex_lock(&philo->mutex_last_meal);
 	philo->last_meal = get_millis();
 	pthread_mutex_unlock(&philo->mutex_last_meal);
