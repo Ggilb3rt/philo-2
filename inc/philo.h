@@ -26,7 +26,7 @@
 # define MSG_SLEEPING "is sleeping"
 # define MSG_THINKING "is thinking"
 # define MSG_DIED "died"
-# define NB_SHARED_VAR_PHILO 3
+# define NB_SHARED_VAR_PHILO 2
 
 typedef enum e_bool
 {
@@ -46,8 +46,6 @@ typedef struct s_global
 typedef struct s_philo
 {
 	int				id;
-	t_bool			alive;
-	pthread_mutex_t	*mutex_alive;
 	pthread_t		thread;
 	int				fork_first;
 	int				fork_second;

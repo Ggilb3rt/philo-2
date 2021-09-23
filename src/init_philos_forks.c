@@ -32,7 +32,6 @@ t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks)
 		philo[i].tto_die = rules.tto_die;
 		philo[i].tto_eat = rules.tto_eat;
 		philo[i].tto_sleep = rules.tto_sleep;
-		philo[i].alive = true;
 		philo[i].nb_philo = rules.nb_philo;
 		philo[i].all_alive = 0;
 		philo[i].fork_first = i;
@@ -67,8 +66,7 @@ t_philo	*init_philos(t_global rules, pthread_mutex_t *forks)
 	while (++i < rules.nb_philo)
 	{
 		philo[i].mutex_all_alive = mutex[0];
-		philo[i].mutex_alive = mutex[1];
-		philo[i].mutex_talk = mutex[2];
+		philo[i].mutex_talk = mutex[1];
 		pthread_mutex_init(&philo[i].mutex_last_meal, NULL);
 	}
 	return (philo);

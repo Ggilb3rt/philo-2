@@ -92,7 +92,7 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&philo[i].mutex_last_meal);
 			pthread_mutex_unlock(philo->mutex_all_alive);
 		}
-		ft_usleep(100, philo);
+		usleep(100);
 	}
 	return (NULL);
 }

@@ -8,12 +8,12 @@ OBJ = $(SRC:$S%.c=$O%.o)
 
 CC = gcc
 #REMEMBER TO REMOVE -g
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 INCFLAGS = -I$I
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Linux)
-	TFLAGS = -pthread -lpthread
+	LINUXFLAGS = -pthread -lpthread
 endif
 
 RM = rm -f
@@ -33,12 +33,7 @@ $O%.o: $S%.c $(HEADERS) | $O
 	@$(CC) $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@$(CC) $^ -o $@
-	@printf "Have fun :-)\n"
-	#make test
-
-linux: $(OBJ)
-	@$(CC) $^ -pthread -lpthread -o $(NAME)
+	@$(CC) $^ $(LINUXFLAGS) -o $@
 	@printf "Have fun :-)\n"
 	#make test
 

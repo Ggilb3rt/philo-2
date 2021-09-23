@@ -37,10 +37,8 @@ void	ft_free_philos(t_philo *philo)
 		i++;
 	}
 	pthread_mutex_destroy(philo->mutex_all_alive);
-	pthread_mutex_destroy(philo->mutex_alive);
 	pthread_mutex_destroy(philo->mutex_talk);
 	free(philo->mutex_all_alive);
-	free(philo->mutex_alive);
 	free(philo->mutex_talk);
 	free(philo);
 }

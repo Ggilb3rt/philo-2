@@ -36,19 +36,17 @@ void	start(t_philo *philo)
 	pthread_t	monitor_thread;
 	int			starter;
 	int			all_alive;
-	int			i;
+	//int			i;
 
 	starter = 0;
 	all_alive = 0;
 	now = get_millis();
-	printf("START / %ld\n", now);
 	start_half_philo(philo, starter, now, &all_alive);
 	ft_usleep(10, philo);
 	start_half_philo(philo, ++starter, now, &all_alive);
 	pthread_create(&monitor_thread, NULL, monitor, philo);
 	pthread_join(monitor_thread, NULL);
-	i = -1;
-	while (++i < philo->nb_philo)
-		pthread_detach(philo[i].thread);
-	printf("END / %ld\n", get_millis());
+	//i = -1;
+	//while (++i < philo->nb_philo)
+	//	pthread_detach(philo[i].thread);
 }
