@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/23 13:32:42 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:11:50 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,14 @@ void			ft_usleep(int time, t_philo *philo);
 void			print_msg(char *msg, t_philo *philo);
 
 t_bool			init_args(int ac, char **av, int *args);
-t_philo			*init_philos(t_global rules, pthread_mutex_t *forks);
+t_philo			*init_philos(t_global rules, pthread_mutex_t *forks, int *a);
 pthread_mutex_t	*init_forks(t_global *rules);
 
 void			start(t_philo *philo);
 void			*life(void *arg);
 void			*monitor(void *arg);
 t_bool			check_alive(t_philo *philo);
+t_bool			eat(t_philo *philo);
 
 
 int				ft_free_forks(pthread_mutex_t *forks, t_global *rules);

@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:33:26 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 17:34:00 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:12:43 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //philo[i].fork_second = ft_max(i, (i + 1) % rules.nb_philo);
 //printf("philo %d demands fork %d first then fork %d\n",
 //			philo[i].id + 1, philo[i].fork_first + 1, philo[i].fork_second + 1);
-t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks)
+t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks, int *a)
 {
 	int		i;
 	t_philo	*philo;
@@ -33,10 +33,10 @@ t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks)
 		philo[i].tto_eat = rules.tto_eat;
 		philo[i].tto_sleep = rules.tto_sleep;
 		philo[i].nb_philo = rules.nb_philo;
-		philo[i].all_alive = 0;
+		philo[i].all_alive = a;
 		philo[i].fork_first = i;
 		philo[i].fork_second = i - 1;
-		if (i - 1 < 0)
+		if (i == 0)
 			philo[i].fork_second = rules.nb_philo - 1;
 		philo[i].mutex_forks = forks;
 		i++;
@@ -44,13 +44,13 @@ t_philo	*init_philo_basics(t_global rules, pthread_mutex_t *forks)
 	return (philo);
 }
 
-t_philo	*init_philos(t_global rules, pthread_mutex_t *forks)
+t_philo	*init_philos(t_global rules, pthread_mutex_t *forks, int *all_alive)
 {
 	int				i;
 	t_philo			*philo;
 	pthread_mutex_t	*mutex[NB_SHARED_VAR_PHILO];
 
-	philo = init_philo_basics(rules, forks);
+	philo = init_philo_basics(rules, forks, all_alive);
 	if (!philo)
 		return (NULL);
 	i = 0;

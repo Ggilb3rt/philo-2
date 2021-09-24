@@ -8,7 +8,7 @@ OBJ = $(SRC:$S%.c=$O%.o)
 
 CC = gcc
 #REMEMBER TO REMOVE -g
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra  -g -fsanitize=thread
 INCFLAGS = -I$I
 
 UNAME := $(shell uname)
