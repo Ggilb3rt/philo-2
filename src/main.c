@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 	if (!philo)
 		return (ft_free_forks(forks, &rules));
 	start(philo);
+	printf("im out\n");
 	ft_free_forks(forks, &rules);
 	ft_free_philos(philo);
 	return (EXIT_SUCCESS);

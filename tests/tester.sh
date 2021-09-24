@@ -27,7 +27,7 @@ printf "\033[0;33m\nTest basic 5 60 10 60 | expect die\n\033[0m"
 ./philo 5 60 10 60
 
 printf "\033[0;33m\nTest basic 3 420 50 3 5 | expect end after 5 meals each (15)\n\033[0m"
-./philo 3 420 50 3 5 | grep "1 is eating" | wc -l
+./philo 3 420 50 3 5 | grep "is eating" | wc -l
 
 
 

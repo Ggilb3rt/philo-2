@@ -17,30 +17,54 @@ t_bool	check_alive(t_philo *philo)
 	pthread_mutex_lock(philo->mutex_all_alive);
 	if (*philo->all_alive == -1)
 	{
-		//pthread_mutex_unlock(philo->mutex_all_alive);
+		pthread_mutex_unlock(philo->mutex_all_alive);
 		return (false);
 	}
 	pthread_mutex_unlock(philo->mutex_all_alive);
 	return (true);
 }
 
+void	take_fork(t_philo *philo, pthread_mutex_t *fork)
+{
+	pthread_mutex_lock(fork);
+	pthread_mutex_lock(philo->mutex_all_alive);
+	if (*philo->all_alive != -1)
+		print_msg(MSG_TAKE_FORK, philo);
+	pthread_mutex_unlock(philo->mutex_all_alive);
+}
+
+void	drop_fork(pthread_mutex_t *fork)
+{
+	pthread_mutex_unlock(fork);
+}
+
 t_bool	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->mutex_forks[philo->fork_first]);
+	/*pthread_mutex_lock(&philo->mutex_forks[philo->fork_first]);
 	print_msg(MSG_TAKE_FORK, philo);
 	pthread_mutex_lock(&philo->mutex_forks[philo->fork_second]);
-	print_msg(MSG_TAKE_FORK, philo);
-	print_msg(MSG_EATING, philo);
-	if (!check_alive(philo))
+	print_msg(MSG_TAKE_FORK, philo);*/
+	take_fork(philo, &philo->mutex_forks[philo->fork_first]);
+	take_fork(philo, &philo->mutex_forks[philo->fork_second]);
+	pthread_mutex_lock(philo->mutex_all_alive);
+	if (*philo->all_alive != -1)
+		print_msg(MSG_EATING, philo);
+	else
+	{
+		pthread_mutex_unlock(philo->mutex_all_alive);
+		drop_fork(&philo->mutex_forks[philo->fork_first]);
+		drop_fork(&philo->mutex_forks[philo->fork_second]);
 		return (false);
+	}
+	pthread_mutex_unlock(philo->mutex_all_alive);
 	pthread_mutex_lock(&philo->mutex_last_meal);
 	philo->last_meal = get_millis();
 	pthread_mutex_unlock(&philo->mutex_last_meal);
 	ft_usleep(philo->tto_eat, philo);
+	drop_fork(&philo->mutex_forks[philo->fork_first]);
+	drop_fork(&philo->mutex_forks[philo->fork_second]);
 	if (!check_alive(philo))
 		return (false);
-	pthread_mutex_unlock(&philo->mutex_forks[philo->fork_first]);
-	pthread_mutex_unlock(&philo->mutex_forks[philo->fork_second]);
 	return (true);
 }
 
@@ -59,14 +83,24 @@ void	*life(void *arg)
 			return (NULL);
 		pthread_mutex_lock(philo->mutex_all_alive);
 		*philo->all_alive += 1;
+		if (*philo->all_alive != -1)
+			print_msg(MSG_SLEEPING, philo);
+		else
+		{
+			pthread_mutex_unlock(philo->mutex_all_alive);
+			return (NULL);
+		}
 		pthread_mutex_unlock(philo->mutex_all_alive);
-		if (!check_alive(philo))
-			return (NULL);
-		print_msg(MSG_SLEEPING, philo);
 		ft_usleep(philo->tto_sleep, philo);
-		if (!check_alive(philo))
+		pthread_mutex_lock(philo->mutex_all_alive);
+		if (*philo->all_alive != -1)
+			print_msg(MSG_THINKING, philo);
+		else
+		{
+			pthread_mutex_unlock(philo->mutex_all_alive);
 			return (NULL);
-		print_msg(MSG_THINKING, philo);
+		}
+		pthread_mutex_unlock(philo->mutex_all_alive);
 		nb_meal++;
 	}
 	return (NULL);
@@ -85,12 +119,18 @@ void	*monitor(void *arg)
 		{
 			pthread_mutex_lock(philo->mutex_all_alive);
 			if (*philo->all_alive == philo->nb_philo * philo->nb_meal)
+			{
+				pthread_mutex_unlock(philo->mutex_all_alive);
 				return (NULL);
+			}
 			pthread_mutex_lock(&philo[i].mutex_last_meal);
 			if (get_millis() - philo[i].last_meal > philo->tto_die)
 			{
 				print_msg(MSG_DIED, &philo[i]);
 				*philo->all_alive = -1;
+				pthread_mutex_unlock(&philo[i].mutex_last_meal);
+				pthread_mutex_unlock(philo->mutex_all_alive);
+				printf("bye\n");
 				return (NULL);
 			}
 			pthread_mutex_unlock(&philo[i].mutex_last_meal);
