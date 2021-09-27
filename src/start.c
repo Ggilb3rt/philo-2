@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 17:36:27 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/24 18:04:07 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/27 16:08:19 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	start_half_philo(t_philo *philo, int start, time_t now)
 void	start(t_philo *philo)
 {
 	time_t		now;
-	pthread_t	monitor_thread;
+	//pthread_t	monitor_thread;
 	int			starter;
 
 	starter = 0;
@@ -41,8 +41,9 @@ void	start(t_philo *philo)
 	start_half_philo(philo, starter, now);
 	ft_usleep(10, philo);
 	start_half_philo(philo, ++starter, now);
-	pthread_create(&monitor_thread, NULL, monitor, philo);
-	pthread_join(monitor_thread, NULL);
+	monitor(philo);
+	//pthread_create(&monitor_thread, NULL, monitor, philo);
+	//pthread_join(monitor_thread, NULL);
 }
 /*
 
