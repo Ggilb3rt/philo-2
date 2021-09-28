@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 18:25:25 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/22 17:44:06 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:06:35 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ t_bool	all_digits(char *av)
 	return (true);
 }
 
-t_bool	init_args(int ac, char **av, int *args)
+t_bool	init_args(int ac, char **av, t_global *rules)
 {
 	int	i;
+	int	args[MIN_NB_ARG];
 
 	i = 1;
 	args[MIN_NB_ARG - 1] = -1;
@@ -74,6 +75,7 @@ t_bool	init_args(int ac, char **av, int *args)
 	}
 	if (args[0] == 0)
 		return (false);
+	init_rules(args, rules);
 	return (true);
 }
 

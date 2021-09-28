@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 07:49:41 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/24 16:10:57 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:50:01 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_free_philos(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i < philo->nb_philo)
+	while (i < philo->rules->nb_philo)
 	{
 		pthread_mutex_destroy(&philo[i].mutex_last_meal);
 		i++;
