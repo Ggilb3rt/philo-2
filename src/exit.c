@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 07:49:41 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/28 16:50:01 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:01:20 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void	ft_free_philos(t_philo *philo)
 	}
 	pthread_mutex_destroy(philo->mutex_all_alive);
 	pthread_mutex_destroy(philo->mutex_talk);
+	pthread_mutexattr_destroy(philo->mutex_eat_x_times);
 	free(philo->mutex_all_alive);
 	free(philo->mutex_talk);
+	free(philo->mutex_eat_x_times);
 	free(philo);
 }
