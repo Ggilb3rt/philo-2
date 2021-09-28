@@ -6,7 +6,7 @@
 /*   By: ggilbert <ggilbert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:44:52 by ggilbert          #+#    #+#             */
-/*   Updated: 2021/09/28 16:50:24 by ggilbert         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:36:07 by ggilbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,6 @@ typedef struct s_philo
 	pthread_mutex_t	*mutex_all_alive;
 	pthread_mutex_t	*mutex_talk;
 }	t_philo;
-
-typedef struct s_monitor
-{
-	int				eat_x_times;
-	pthread_mutex_t	mutex_eat_x_times;
-	int				*all_alive;
-	pthread_mutex_t	*mutex_all_alive;
-	pthread_mutex_t	*mutex_talk;
-}	t_monitor;
 
 int				ft_min(int x, int y);
 int				ft_max(int x, int y);
